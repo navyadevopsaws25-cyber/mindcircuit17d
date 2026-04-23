@@ -1,5 +1,8 @@
 pipeline {
     agent any stages {
+        trigger{
+            gitpush()
+        }
      stage('Git Clone') {
             steps {
                 echo 'clonig from github repo'
