@@ -1,13 +1,11 @@
 pipeline {
     agent any
     stages {
-
-
-        stage('Git Clone') {
+     stage('Git Clone') {
             steps {
                 echo 'clonig from github repo'
-             git branch: 'main', url: 'https://github.com/navyadevopsaws25-cyber/mindcircuit16d.git'
-            }
+            git branch: 'main', url: 'https://github.com/navyadevopsaws25-cyber/mindcircuit17d.git'         
+        }
         }
 
          stage('build artifact') {
@@ -21,9 +19,9 @@ pipeline {
         stage('Deploy to tomcat') {
             steps {
                 echo 'deploying on tomcat web'
-          deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://ec2-54-242-132-214.compute-1.amazonaws.com:8090/')], contextPath: 'MC-APP', war: '**/*.war'
-            }
+          deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://ec2-54-242-148-25.compute-1.amazonaws.com:8081/')], contextPath: 'navya', war: '**/*.war'            }
         }
 
     }
+}
 }
