@@ -1,1 +1,1 @@
-HI EVERYONE TODAY IM LEARNING NEXUS ARTIFACTORY.
+i have succesfully deployed artifact in nexus and tomcat web using pipeline
