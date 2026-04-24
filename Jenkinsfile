@@ -16,12 +16,17 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-   
+    stage('build artifact') {
+            steps {
+                echo 'building artifact using maven and deployoing on nexus'
+                sh 'mvn clean deploy'
+            }
+        }
 
         stage('Deploy to tomcat') {
             steps {
                 echo 'deploying on tomcat web'
-          deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://ec2-54-242-148-25.compute-1.amazonaws.com:8081/')], contextPath: 'navya', war: '**/*.war'        
+          deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://34.224.82.8:8081//')], contextPath: 'navya', war: '**/*.war'        
             }
         }
 
