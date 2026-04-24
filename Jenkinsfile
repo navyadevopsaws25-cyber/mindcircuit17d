@@ -1,6 +1,9 @@
 pipeline {
     agent any 
     stages {
+        trigger{
+            github push()
+        }
        
      stage('Git Clone') {
             steps {
