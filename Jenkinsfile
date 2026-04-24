@@ -1,9 +1,7 @@
 pipeline {
     agent any 
     stages {
-        trigger{
-            gitpush()
-        }
+       
      stage('Git Clone') {
             steps {
                 echo 'clonig from github repo'
@@ -17,7 +15,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-    stage('build artifact') {
+    stage('deploy on nexus') {
             steps {
                 echo 'building artifact using maven and deployoing on nexus'
                 sh 'mvn clean deploy'
