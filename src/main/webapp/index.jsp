@@ -1,1 +1,1 @@
-i have succesfully deployed artifact in nexus and tomcat web using pipeline
+i have succesfully deployed Dockerfile using jenkins and tomcat process and deployed automation using Docker
