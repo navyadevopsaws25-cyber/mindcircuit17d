@@ -1,1 +1,1 @@
-i have succesfully deployed Dockerfile using jenkins and tomcat process and deployed automation using Docker-new feature
+I have succesfully installed sonarqube and using project for checking vulnerabilities
