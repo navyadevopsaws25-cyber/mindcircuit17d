@@ -30,14 +30,12 @@ pipeline {
 				
             }
         }
-
-        stage('Deploy to tomcat') {
+      stage('Deploy to Tomcat') {
             steps {
-                echo 'deploying on tomcat web'
-        #  deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://34.224.82.8:8081/')], contextPath: 'navya', war: '**/*.war'        
+                echo 'This stage deploys .war to tomcat webserver'
+               deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://13.217.107.205:8081/')], contextPath: 'app', war: '**/*.war'
             }
-        }
+        }		
+       
 
     }}
-
-
