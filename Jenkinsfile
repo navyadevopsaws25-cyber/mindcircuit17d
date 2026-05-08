@@ -1,9 +1,9 @@
 pipeline {
-    agent any 
+    agent any
+    tools{
+        maven 'Maven_3.9.11'
+    }
     
-    triggers {
-            githubPush()
-        }
        stages {
      stage('Git Clone') {
             steps {
@@ -12,23 +12,29 @@ pipeline {
         }
         }
 
-         stage('build artifact') {
+        stage('sonarqube scan') {
             steps {
-                echo 'building artifact using maven'
-                sh 'mvn clean install'
+                echo 'This stage scans the code using sonarqube'
+                sh 'ls -ltrh'
+                
+                sh ''' mvn sonar:sonar \\
+                      -Dsonar.host.url=http://13.217.107.205:9000 \\
+                      -Dsonar.login=squ_6f842bd4dc776de375a9b6257db22632edd77c69'''
             }
-        }
-    stage('deploy on nexus') {
+    	}		
+		
+        stage('Build Artifact') {
             steps {
-                echo 'building artifact using maven and deployoing on nexus'
-                sh 'mvn clean deploy'
+                echo 'This stage builds the code using maven'
+				sh 'mvn clean install'			
+				
             }
         }
 
         stage('Deploy to tomcat') {
             steps {
                 echo 'deploying on tomcat web'
-          deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://34.224.82.8:8081/')], contextPath: 'navya', war: '**/*.war'        
+        #  deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat', path: '', url: 'http://34.224.82.8:8081/')], contextPath: 'navya', war: '**/*.war'        
             }
         }
 
